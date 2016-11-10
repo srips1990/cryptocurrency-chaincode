@@ -109,7 +109,7 @@ func (t *SimpleChaincode) Invoke(stub *shim.ChaincodeStub, function string, args
 	} else if function == "init_marble" {									//create a new marble
 		return t.init_marble(stub, args)
 	} else if function == "set_user" {										//change owner of a marble
-		return t.set_user(stub, args)
+		return nil, nil
 	} else if function == "transfer_money" {										//change owner of a marble
 		return t.transfer_money(stub, args)
 	} else if function == "create_user" {										//change owner of a marble
@@ -298,7 +298,10 @@ func (t *SimpleChaincode) transfer_money(stub *shim.ChaincodeStub, args []string
 	fromUserId = args[0]															//rename for funsies
 	toUserId = args[1]
 	assetName = args[2]															//rename for funsies
-	qty = strconv.Atoi(args[3])
+	qty, err = strconv.Atoi(args[3])
+	if err != nil {
+		return nil, err
+	}
 
 	if qty <= 0 {
 		return nil, errors.New("Invalid Amount. Amount should be greater than 0")
@@ -315,7 +318,7 @@ func (t *SimpleChaincode) transfer_money(stub *shim.ChaincodeStub, args []string
 	//Sender Assets Validation
 	//
 	var senderAssets UserAssets
-	senderAssetsAsBytes, err = stub.GetState(senderAccNo)
+	senderAssetsAsBytes, err := stub.GetState(senderAccNo)
 	if err != nil {
 		return nil, err
 	}
@@ -352,7 +355,7 @@ func (t *SimpleChaincode) transfer_money(stub *shim.ChaincodeStub, args []string
 	recipientAccNo := string(recipientAccNoAsBytes)		//State Key for Recipient Assets
 
 	var recipientAssets UserAssets		//Goes into PutState
-	recipientAssetsAsBytes, err = stub.GetState(recipientAccNo)
+	recipientAssetsAsBytes, err := stub.GetState(recipientAccNo)
 	if err != nil {
 	  return nil, err
 	}
