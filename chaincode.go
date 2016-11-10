@@ -323,7 +323,7 @@ func (t *SimpleChaincode) transfer_money(stub *shim.ChaincodeStub, args []string
 		return nil, err
 	}
 	json.Unmarshal(senderAssetsAsBytes, &senderAssets)
-	senderAssetsOld := senderAssets
+	//senderAssetsOld := senderAssets
 
 	var senderAssetIndex int = -1
 	for i:=0; i<len(senderAssets.Assets); i++	{
