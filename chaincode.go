@@ -323,8 +323,7 @@ func (t *SimpleChaincode) transfer_money(stub *shim.ChaincodeStub, args []string
 	senderAssetsOld := senderAssets
 
 	var senderAssetIndex int = -1
-	for i:=0; i<len(senderAssets.Assets); i++
-	{
+	for i:=0; i<len(senderAssets.Assets); i++	{
 		if senderAssets.Assets[i].Name == assetName {
 				senderAssetIndex = i
 		}
@@ -361,8 +360,7 @@ func (t *SimpleChaincode) transfer_money(stub *shim.ChaincodeStub, args []string
 	recipientAssetsOld := recipientAssets
 
 	var recipientAssetIndex int = -1
-	for i:=0; i<len(recipientAssets.Assets); i++
-	{
+	for i:=0; i<len(recipientAssets.Assets); i++	{
 	  if recipientAssets.Assets[i].Name == assetName {
 	      recipientAssetIndex = i
 	  }
@@ -374,8 +372,7 @@ func (t *SimpleChaincode) transfer_money(stub *shim.ChaincodeStub, args []string
 		recipientAsset.Qty = qty
 		recipientAssets.Assets = append(recipientAssets.Assets, recipientAsset)
 	}
-	else
-	{
+	else	{
 		recipientAssets.Assets[recipientAssetIndex].Qty -= qty
 	}
 
