@@ -386,7 +386,7 @@ func (t *SimpleChaincode) transfer_money(stub *shim.ChaincodeStub, args []string
 	recipientAssetsAsBytes, err = json.Marshal(recipientAssets)
 	if err != nil {	return nil, err	}
 
-	senderAssetsAsBytes, err := json.Marshal(senderAssets)
+	senderAssetsAsBytes, err = json.Marshal(senderAssets)
 	if err != nil {	return nil, err	}
 
 	recipientAssetsOldAsBytes, err := json.Marshal(recipientAssetsOld)
