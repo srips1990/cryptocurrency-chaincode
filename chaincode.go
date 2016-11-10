@@ -371,8 +371,7 @@ func (t *SimpleChaincode) transfer_money(stub *shim.ChaincodeStub, args []string
 		recipientAsset.Name = assetName
 		recipientAsset.Qty = qty
 		recipientAssets.Assets = append(recipientAssets.Assets, recipientAsset)
-	}
-	else	{
+	}	else	{
 		recipientAssets.Assets[recipientAssetIndex].Qty -= qty
 	}
 
